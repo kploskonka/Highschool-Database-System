@@ -34,3 +34,12 @@ CREATE TABLE Teachers (
     CONSTRAINT TeachersFK FOREIGN KEY (AccountID) REFERENCES Accounts(AccountId) 
 )
 GO
+
+ALTER TABLE Accounts
+ADD CONSTRAINT is_password_valid CHECK(LEN(Password) > 7)
+
+ALTER TABLE Students
+ADD CONSTRAINT is_student_phone_valid CHECK(ISNUMERIC(PhoneNumber) = 1 AND LEN(PhoneNumber) = 9)
+
+ALTER TABLE Teachers
+ADD CONSTRAINT is_teacher_phone_valid CHECK(ISNUMERIC(PhoneNumber) = 1 AND LEN(PhoneNumber) = 9)
