@@ -129,4 +129,4 @@ ALTER TABLE Teachers
 ADD CONSTRAINT is_teacher_phone_valid CHECK(ISNUMERIC(PhoneNumber) = 1 AND LEN(PhoneNumber) = 9)
 
 ALTER TABLE ExamResults
-ADD CONSTRAINT is_mark_valid CHECK(Mark BETWEEN(1,6))
+ADD CONSTRAINT is_mark_valid CHECK(Mark BETWEEN 1 AND 6)
