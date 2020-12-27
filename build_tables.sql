@@ -1,6 +1,15 @@
 DROP TABLE Students
 DROP TABLE Teachers
 DROP TABLE Accounts
+DROP TABLE Classes
+DROP TABLE Meetings
+DROP TABLE Duties
+DROP TABLE Exams
+DROP TABLE ExamResults
+DROP TABLE Borrows
+DROP TABLE Books
+DROP TABLE Authors
+
 
 CREATE TABLE Accounts (
     AccountId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -35,6 +44,81 @@ CREATE TABLE Teachers (
 )
 GO
 
+CREATE TABLE Classes (
+    ClassId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    HeadTeacherId INTEGER NULL,
+    Classroom INTEGER NOT NULL,
+    CONSTRAINT HeadTeacherFK FOREIGN KEY (HeadTeacherId) REFERENCES Teachers(TeacherId) 
+)
+GO
+
+CREATE TABLE Meetings (
+    ClassId INTEGER NOT NULL PRIMARY KEY,
+    MeetingDate DATE NOT NULL,
+    Classroom INTEGER NOT NULL,
+    CONSTRAINT MeetingFK FOREIGN KEY (ClassId) REFERENCES Classes(ClassId) 
+)
+GO
+
+CREATE TABLE Duties (
+    DutyId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    StudentId INTEGER NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    CONSTRAINT StudentFK FOREIGN KEY (StudentId) REFERENCES Students(StudentId) 
+
+)
+GO
+
+CREATE TABLE Exams(
+    ExamId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    ClassId INTEGER NOT NULL,
+    examDate DATE NOT NULL,
+    CONSTRAINT ExamsFK FOREIGN KEY(ClassId) REFERENCES Classes(ClassId)
+)
+GO
+
+CREATE TABLE ExamResults(
+    ExamId INTEGER NOT NULL,
+    StudentId INTEGER NOT NULL,
+    CourseId INTEGER NOT NULL,
+    TeacherId INTEGER NOT NULL,
+    Mark INTEGER NOT NULL,
+    resultDate DATE NOT NULL,
+    CONSTRAINT ExamsResultsFK FOREIGN KEY(ExamId) REFERENCES Exams(ExamId),
+    CONSTRAINT StudentFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId),
+    CONSTRAINT CourseFK FOREIGN KEY(CourseId) REFERENCES Courses(CourseId),
+    CONSTRAINT TeacherFK FOREIGN KEY(TeacherId) REFERENCES Teachers(TeacherId),
+)
+GO
+CREATE TABLE Authors(
+    AuthorId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL,
+    Surname NVARCHAR(50) NOT NULL,
+)
+
+
+CREATE TABLE Books(
+    BookId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    AuthorId INTEGER NOT NULL,
+    Title NVARCHAR(50) NOT NULL,
+    Category NVARCHAR(50) NOT NULL,
+    relaseDate DATE NOT NULL,
+    CONSTRAINT AuthorFK FOREIGN KEY(AuthorId) REFERENCES Authors(AuthorId)
+)
+GO
+CREATE TABLE Borrows(
+    BorrowId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    StudentId INTEGER NOT NULL,
+    BookId INTEGER NOT NULL,
+    TakenDate DATE NOT NULL,
+    ReturnDate DATE,
+    CONSTRAINT BookFK FOREIGN KEY(BookId) REFERENCES Books(BookId)
+    CONSTRAINT StudentFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId)
+)
+GO
+
+
 ALTER TABLE Accounts
 ADD CONSTRAINT is_password_valid CHECK(LEN(Password) > 7)
 
@@ -43,3 +127,6 @@ ADD CONSTRAINT is_student_phone_valid CHECK(ISNUMERIC(PhoneNumber) = 1 AND LEN(P
 
 ALTER TABLE Teachers
 ADD CONSTRAINT is_teacher_phone_valid CHECK(ISNUMERIC(PhoneNumber) = 1 AND LEN(PhoneNumber) = 9)
+
+ALTER TABLE ExamResults
+ADD CONSTRAINT is_mark_valid CHECK(Mark BETWEEN(1,6))
