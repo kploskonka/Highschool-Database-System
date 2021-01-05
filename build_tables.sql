@@ -109,7 +109,7 @@ CREATE TABLE ExamResults (
     ExamId INTEGER NOT NULL,
     StudentId INTEGER NOT NULL,
     CourseId INTEGER NOT NULL,
-    Mark INTEGER NOT NULL,
+    Mark FLOAT NOT NULL,
     ResultDate DATE NOT NULL,
     CONSTRAINT ExamsResultsFK FOREIGN KEY(ExamId) REFERENCES Exams(ExamId),
 )
