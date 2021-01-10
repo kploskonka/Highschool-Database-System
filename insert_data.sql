@@ -287,5 +287,14 @@ INSERT INTO Books VALUES
     (5, 'Quo vaids',11, 'Powieść'),
     (6, 'Introduction to Algorithms', 1, 'Algorytmy i struktury danych')
 
-INSERT INTO Borrows VALUES
-    ()
+INSERT INTO Grades VALUES
+	(1, 1, 5.0, 'aktywnosc'),
+	(1, 2, 4.5, 'kartkowka'),
+	(1, 1, 5.0, 'sprawdzian'),
+	(1, 1, 5.0, 'sprawdzian'),
+	(2, 1, 4.5, 'aktywnosc'),
+	(2, 2, 5.0, 'sprawdzian'),
+	(2, 3, 4.5, 'kartkowka'),
+	(2, 3, 6.0, 'konkurs'),
+	(3, 1, 3.0, 'aktywnosc'),
+	(3, 2, 1.0, 'zadanie domowe')
