@@ -3,7 +3,7 @@ DROP TABLE Lessons
 DROP TABLE Notes
 DROP TABLE Absences
 DROP TABLE Meetings
-DROP TABLE Duties
+DROP TABLE Grades
 DROP TABLE Exams
 DROP TABLE Borrows
 DROP TABLE Books
@@ -14,6 +14,7 @@ DROP TABLE Classes
 DROP TABLE Courses
 DROP TABLE Teachers
 DROP TABLE Accounts
+DROP TABLE Grades
 GO
 
 CREATE TABLE Accounts (
@@ -73,7 +74,16 @@ CREATE TABLE Students (
     CONSTRAINT StudentClassFK FOREIGN KEY(ClassId) REFERENCES Classes(ClassId)
 )
 GO
+CREATE TABLE Grades (
+    GradeId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+    StudentId INTEGER NOT NULL,
+    TeacherId INTEGER NOT NULL,
+    Grade FLOAT NOT NULL,
+    Type NVARCHAR(50)
+    CONSTRAINT StudentGradeFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId)
+    CONSTRAINT TeacherGradeFK FOREIGN KEY(TeacherId) REFERENCES Teachers(TeacherId)
 
+)
 CREATE TABLE Parents (
     ParentId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
     ChildId INTEGER NOT NULL,
@@ -94,15 +104,6 @@ CREATE TABLE Meetings (
     Classroom INTEGER NOT NULL,
     Topic NVARCHAR(50) NOT NULL,
     CONSTRAINT MeetingFK FOREIGN KEY(ClassId) REFERENCES Classes(ClassId) 
-)
-GO
-
-CREATE TABLE Duties (
-    DutyId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
-    StudentId INTEGER NOT NULL,
-    StartDate DATE NOT NULL,
-    EndDate DATE NOT NULL,
-    CONSTRAINT StudentFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId) 
 )
 GO
 
@@ -138,7 +139,6 @@ CREATE TABLE Books (
     Title NVARCHAR(50) NOT NULL,
     Amount INTEGER NOT NULL,
     Category NVARCHAR(50) NOT NULL,
-    RelaseDate DATE NOT NULL,
     CONSTRAINT AuthorFK FOREIGN KEY(AuthorId) REFERENCES Authors(AuthorId)
 )
 GO
