@@ -1,20 +1,20 @@
-DROP TABLE ExamResults
-DROP TABLE Lessons
-DROP TABLE Notes
-DROP TABLE Absences
-DROP TABLE Meetings
-DROP TABLE Grades
-DROP TABLE Exams
-DROP TABLE Borrows
-DROP TABLE Books
-DROP TABLE Authors
-DROP TABLE Parents
-DROP TABLE Students
-DROP TABLE Classes
-DROP TABLE Courses
-DROP TABLE Teachers
-DROP TABLE Accounts
-DROP TABLE Grades
+IF OBJECT_ID('ExamResults', 'U') IS NOT NULL DROP TABLE ExamResults 
+IF OBJECT_ID('Lessons', 'U') IS NOT NULL DROP TABLE Lessons
+IF OBJECT_ID('Notes', 'U') IS NOT NULL DROP TABLE Notes
+IF OBJECT_ID('Absences', 'U') IS NOT NULL DROP TABLE Absences
+IF OBJECT_ID('Meetings', 'U') IS NOT NULL DROP TABLE Meetings
+IF OBJECT_ID('Exams', 'U') IS NOT NULL DROP TABLE Exams
+IF OBJECT_ID('Borrows', 'U') IS NOT NULL DROP TABLE Borrows
+IF OBJECT_ID('Books', 'U') IS NOT NULL DROP TABLE Books
+IF OBJECT_ID('Authors', 'U') IS NOT NULL DROP TABLE Authors
+IF OBJECT_ID('Parents', 'U') IS NOT NULL DROP TABLE Parents
+IF OBJECT_ID('Grades', 'U') IS NOT NULL DROP TABLE Grades
+IF OBJECT_ID('Students', 'U') IS NOT NULL DROP TABLE Students
+IF OBJECT_ID('Classes', 'U') IS NOT NULL DROP TABLE Classes
+IF OBJECT_ID('Courses', 'U') IS NOT NULL DROP TABLE Courses
+IF OBJECT_ID('Teachers', 'U') IS NOT NULL DROP TABLE Teachers
+IF OBJECT_ID('Accounts', 'U') IS NOT NULL DROP TABLE Accounts
+
 GO
 
 CREATE TABLE Accounts (
@@ -79,11 +79,12 @@ CREATE TABLE Grades (
     StudentId INTEGER NOT NULL,
     TeacherId INTEGER NOT NULL,
     Grade FLOAT NOT NULL,
-    Type NVARCHAR(50)
-    CONSTRAINT StudentGradeFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId)
-    CONSTRAINT TeacherGradeFK FOREIGN KEY(TeacherId) REFERENCES Teachers(TeacherId)
+    Type NVARCHAR(50),
+    CONSTRAINT StudentGradeFK FOREIGN KEY(StudentId) REFERENCES Students(StudentId),
+    CONSTRAINT TeacherGradeFK FOREIGN KEY(TeacherId) REFERENCES Teachers(TeacherId),
 
 )
+GO
 CREATE TABLE Parents (
     ParentId INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
     ChildId INTEGER NOT NULL,
