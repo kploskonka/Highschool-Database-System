@@ -13,6 +13,7 @@ AS
                         WHERE Title = @Title
                     END
                 ELSE PRINT "Nie wystarczająca liczba książek w bibliotece o podanym tytule";
+            COMMIT TRANSACTION
     END
     ELSE BEGIN
             PRINT "Nie ma użytkownika o takim haśle/loginie"
