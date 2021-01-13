@@ -6,15 +6,16 @@ AS
                     INSERT INTO Borrows VALUES
                         ((SELECT StudentId FROM Students S JOIN Accounts A ON S.AccountId = A.AccountId WHERE A.Login = @AccountLogin),
                         (SELECT BookId FROM Books WHERE Title = @Title),
-                        GETDATE()
+                        GETDATE(),
+						NULL
                         )
                     UPDATE Books
                         SET Amount = (SELECT Amount FROM Books WHERE Title = @Title) - 1
                         WHERE Title = @Title
                     END
-                ELSE PRINT "Nie wystarczająca liczba książek w bibliotece o podanym tytule";
+                ELSE PRINT N'Nie wystarczająca liczba książek w bibliotece o podanym tytule';
             COMMIT TRANSACTION
     END
     ELSE BEGIN
-            PRINT "Nie ma użytkownika o takim haśle/loginie"
+            PRINT N'Nie ma użytkownika o takim haśle/loginie';
         END
