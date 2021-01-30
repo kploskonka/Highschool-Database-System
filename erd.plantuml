@@ -1,0 +1,129 @@
+@startuml
+hide circle
+entity "Account" as ac {
+    accountId
+    --
+    login
+    password
+    type
+    activation date
+}
+entity "Student" as stu {
+    studentId
+    --
+    first name
+    last name 
+    birth date
+    gender
+    phone number
+}
+entity "Teacher" as tea {
+    teacherId
+    --
+    first name
+    last name 
+    birth date
+    gender
+    phone number
+}
+entity "Parent" as par {
+    parentId
+    --
+    first name
+    last name 
+    birth date
+    gender
+    phone number
+}
+entity "Abscence" as abs{
+    abscenceId
+    --
+    date
+    status
+}
+entity "Borrow" as bo{
+    borrowId
+    --
+    taken date
+    return date
+}
+entity "Book" as book{
+    bookId
+    --
+    "title"
+    amount
+    category
+}
+entity "Author" as au{
+    authorId
+    --
+    first name
+    last name
+}
+entity "Course" as co{
+    courseId
+    --
+    course name
+}
+entity "Lesson" as le{
+    lesson id
+    --
+    date
+    topic
+}
+entity "Class" as cl{
+    classId 
+    --
+    class label
+    clasroom
+}
+entity "Exam" as ex{
+    examId
+    --
+    exam date
+}
+entity "ExamResult" as exR{
+    mark
+    result date
+}
+entity "Meeting" as me{
+    meeting date
+    classroom 
+    topic 
+}
+entity "Note" as no{
+    noteId
+    --
+    date 
+    description
+}
+entity "Grade" as gr{
+    gradeId
+    --
+    grade
+    type
+}
+ ' zero to one |o--
+ ' exactly one ||--
+ ' zero or many }o--
+ ' one or many }|--
+stu }----|| cl : "is a member of"
+stu ||----{ no: "has"
+no }----|| tea: "written by"
+stu ||----{ gr : "has"
+gr }----|| tea: "written by"
+stu ||----{ bo : "borrows"
+bo ||----|| book : "which"
+au ||----{ book : "written by"
+ac ||----|| stu : "owned by"
+ac ||----|| tea : "owned by"
+par ||----{ stu : "is a parent of"
+stu ||----{ abs : "have"
+tea ||----|| co : "teaches"
+tea ||----|| cl : "is a headteacher of"
+co ||----{ le : "contains"
+co ||----{ ex : "has"
+ex ||----{ exR : "has"
+me }----|| cl : "has"
+cl ||----{ le: "has"
+@enduml
