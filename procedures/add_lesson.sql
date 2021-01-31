@@ -6,7 +6,7 @@ AS
     BEGIN
         DECLARE @CourseId INT, @ClassId INT
         SET @CourseId = (SELECT CourseId FROM Courses WHERE CourseName = @CourseName)
-        SET @ClassId = (SELECT CourseId FROM Courses WHERE CourseName = @CourseName)
+        SET @ClassId = (SELECT ClassId FROM Classes WHERE ClassLabel = @ClassLabel)
 
         BEGIN TRANSACTION
             INSERT INTO Lessons VALUES
