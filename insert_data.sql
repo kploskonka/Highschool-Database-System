@@ -318,16 +318,16 @@ INSERT INTO Books VALUES
     (6, 'Introduction to Algorithms', 1, 'Algorytmy i struktury danych')
 
 INSERT INTO Grades VALUES
-    (1, 1, 5.0, 'aktywnosc'),
-    (1, 2, 4.5, 'kartkowka'),
-    (1, 1, 5.0, 'sprawdzian'),
-    (1, 1, 5.0, 'sprawdzian'),
-    (2, 1, 4.5, 'aktywnosc'),
-    (2, 2, 5.0, 'sprawdzian'),
-    (2, 3, 4.5, 'kartkowka'),
-    (2, 3, 6.0, 'konkurs'),
-    (3, 1, 3.0, 'aktywnosc'),
-    (3, 2, 1.0, 'zadanie domowe')
+    (1, 1, 5.0, '2020-12-12', 'aktywnosc'),
+    (1, 2, 4.5, '2021-01-02', 'kartkowka'),
+    (1, 1, 5.0, '2020-10-13', 'sprawdzian'),
+    (1, 1, 5.0, '2020-03-19', 'sprawdzian'),
+    (2, 1, 4.5, '2020-06-12', 'aktywnosc'),
+    (2, 2, 5.0, '2021-02-10', 'sprawdzian'),
+    (2, 3, 4.5, '2021-01-02', 'kartkowka'),
+    (2, 3, 6.0, '2020-12-25', 'konkurs'),
+    (3, 1, 3.0, '2020-11-11', 'aktywnosc'),
+    (3, 2, 1.0, '2020-09-01', 'zadanie domowe')
 
 
 INSERT INTO Borrows VALUES
