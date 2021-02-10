@@ -95,7 +95,7 @@ CREATE TABLE Parents (
     BirthDate DATE NOT NULL,
     Gender NVARCHAR(1) NOT NULL,
     PhoneNumber VARCHAR(9) NOT NULL,
-    CONSTRAINT ParentFk FOREIGN KEY(AccountId) REFERENCES Accounts(Accounts)
+    CONSTRAINT ParentFk FOREIGN KEY(AccountId) REFERENCES Accounts(AccountId),
     CONSTRAINT ChildFK FOREIGN KEY(ChildId) REFERENCES Students(StudentId)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -107,6 +107,7 @@ CREATE TABLE Meetings (
     MeetingDate DATE NOT NULL,
     Classroom INTEGER NOT NULL,
     Topic NVARCHAR(50) NOT NULL,
+	CONSTRAINT MeetingPK PRIMARY KEY(ClassId, MeetingDate),
     CONSTRAINT MeetingFK FOREIGN KEY(ClassId) REFERENCES Classes(ClassId) 
 )
 GO
@@ -126,6 +127,7 @@ CREATE TABLE ExamResults (
     StudentId INTEGER NOT NULL,
     Mark FLOAT NOT NULL,
     ResultDate DATE NOT NULL,
+	CONSTRAINT ExamResultsPK PRIMARY KEY(ExamId, StudentId),
     CONSTRAINT ExamsResultsFK FOREIGN KEY(ExamId) REFERENCES Exams(ExamId),
 )
 GO
