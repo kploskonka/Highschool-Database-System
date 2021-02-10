@@ -2,7 +2,7 @@ CREATE TRIGGER tr_grade_for_notes
 ON Notes
 AFTER INSERT
 AS
-    IF(SELECT count(*) FROM Notes WHERE StudentId = (SELECT StudentId FROM inserted)) >= 3
+    IF(SELECT count(*) FROM Notes WHERE StudentId = (SELECT StudentId FROM inserted)) % 3 = 0
         BEGIN
             INSERT INTO Grades VALUES
                 ((SELECT StudentId FROM inserted),
