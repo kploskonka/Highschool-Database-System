@@ -5,6 +5,7 @@ AS
     IF(SELECT count(*) FROM Notes WHERE StudentId = (SELECT StudentId FROM inserted)) >= 3
         BEGIN
             INSERT INTO Grades VALUES
-                ((SELECT StudentId FROM inserted),(SELECT TeacherId FROM inserted),1,'Trzy uwagi')
+                ((SELECT StudentId FROM inserted),
+                (SELECT TeacherId FROM inserted),1, GETDATE(), 'Trzy uwagi')
         END
 GO

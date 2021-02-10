@@ -110,6 +110,7 @@ entity "Grade" as gr{
  ' exactly one ||--
  ' zero or many }o--
  ' one or many }|--
+ ac ||----|| par: "owned by"
 stu }----|| cl : "is a member of"
 stu ||----{ no: "has"
 no }----|| tea: "written by"
