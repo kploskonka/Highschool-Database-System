@@ -288,14 +288,14 @@ INSERT INTO ExamResults VALUES
     (6,26,6,'2021-01-17')
 
 INSERT INTO Absences VALUES
-    (14,'2020-03-19','Nieupsrawiedliwione'),
+    (14,'2020-03-19','Nieusprawiedliwione'),
     (7,'2020-09-11','Usprawiedliwione'),
     (13,'2021-09-27','Usprawiedliwione'),
     (19,'2020-05-10','Usprawiedliwione'),
     (6,'2020-03-16','Usprawiedliwione'),
-    (19,'2020-02-11','Nieupsrawiedliwione'),
-    (2,'2020-09-22','Nieupsrawiedliwione'),
-    (22,'2020-04-27','Nieupsrawiedliwione'),
+    (19,'2020-02-11','Nieusprawiedliwione'),
+    (2,'2020-09-22','Nieusprawiedliwione'),
+    (22,'2020-04-27','Nieusprawiedliwione'),
     (22,'2021-04-18','Usprawiedliwione')
 
 INSERT INTO Authors VALUES
